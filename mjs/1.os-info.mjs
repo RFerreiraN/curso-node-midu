@@ -1,0 +1,11 @@
+import os from 'node:os';
+
+console.log('Información del Sistema Operativo')
+console.log('_________________________________')
+console.log('Nombre del Sistema Operativo', os.platform())
+console.log('Versión del Sistema Operativo', os.release())
+console.log('Arquitectura', os.arch())
+console.log('CPUs', os.cpus())
+console.log('Memoria Libre: ', os.freemem() / 1024 / 1024)
+console.log('Memoria total: ', os.totalmem() / 1024 / 1024)
+console.log('Tiempo de uso actual de dispositivo: ', os.uptime / 60 / 60, ' dias')
