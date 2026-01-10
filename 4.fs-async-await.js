@@ -1,6 +1,5 @@
 // Forma CommonJS usando async/await con fs/promises (válida y actual)
 
-
 const { readFile } = require('node:fs/promises');
 
 (
@@ -18,6 +17,4 @@ const { readFile } = require('node:fs/promises');
     console.log('Leyendo el tercer comentario...')
     const thirdText = await readFile('./archivo3.txt', 'utf-8')
     console.log('Este es el tercer comentario: ', thirdText)
-
   })()
-
