@@ -1,5 +1,5 @@
 //Argumentos de entrada
-//console.log(process.argv)
+console.log(process.argv)
 
 // Controlar el proceso de salida ( si se la pasa parametro 0 es que todo fue correcto, si pasamos parametro 1 hubo problemas y decidimos salir del proceso)
 // process.exit(0)
@@ -11,5 +11,10 @@
 // })
 
 // current working directory
-console.log(process.cwd())
+//console.log(process.cwd())
+
+//platform
+
+//console.log(process.platform())
+
 

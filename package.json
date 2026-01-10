@@ -1,0 +1,33 @@
+{
+  "name": "curso-node",
+  "version": "1.0.0",
+  "description": "Curso Node de Midudev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RFerreiraN/curso-node-midu.git"
+  },
+  "keywords": [
+    "node",
+    "curso",
+    "nodejs"
+  ],
+  "author": "Ricardo Ferreira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RFerreiraN/curso-node-midu/issues"
+  },
+  "homepage": "https://github.com/RFerreiraN/curso-node-midu#readme",
+  "dependencies": {
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "standard": "^17.1.2"
+  },
+  "eslintConfig": {
+    "extends" : "standard"
+  }
+}
