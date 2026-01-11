@@ -1,0 +1,16 @@
+{
+  "name": "clase2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01.http.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon 01.http.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
