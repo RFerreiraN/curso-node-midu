@@ -6,12 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon 01.http.js",
-    "dev:2": "nodemon 02.routings.js"
+    "dev:2": "nodemon 02.routings.js",
+    "dev:3": "node --watch 03.express.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "express": "5.2.1"
   }
 }
