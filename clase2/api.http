@@ -12,3 +12,16 @@ Content-Type: application/json
       "transform"
   ]
 }
+
+###
+
+PUT http://localhost:1234/pokemon
+Content-Type: application/json
+
+{
+  "name" : "Ricardo",
+  "type" : "normal",
+  "moves" : [
+      "transform"
+  ]
+}
