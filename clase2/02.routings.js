@@ -59,3 +59,60 @@
 // server.listen(port, () => {
 //   console.log(`Servidor escuchando  en puerto : http://localhost:${port}`)
 // })
+
+const http = require('node:http')
+
+const port = process.env.PORT ?? 1234
+const dittoJSON = require('../pokemon/ditto.json')
+
+const processRequest = (req, res) => {
+  const { url, method } = req
+
+  switch (method) {
+    case 'GET':
+      switch (url) {
+        case '/':
+          res.setHeader('Content-type', 'text/html; charset=utf-8')
+          res.end('<h1>Pagína de início</h1>')
+          break
+        case '/pokemon/ditto':
+          res.setHeader('Content-type', 'application/json; charset=utf-8')
+          res.end(JSON.stringify(dittoJSON))
+          break
+        default:
+          res.statusCode = 404
+          res.setHeader('Content-type', 'text/html')
+          res.end('<h1>404 Not Founded</h1>')
+          break
+      }
+      break
+    case 'POST':
+      switch (url) {
+        case '/pokemon': {
+          let body = ''
+          req.on('data', chunk => {
+            body += chunk.toString()
+          })
+
+          req.on('end', () => {
+            const data = JSON.parse(body)
+            res.writeHead('201', { 'Content-Type': 'application/json: charset=utf-8' })
+            res.end(JSON.stringify(data))
+          })
+        }
+
+          break
+        default:
+          res.statusCode = 404
+          res.setHeader('Content-type', 'text/html')
+          res.end('<h1>404 Not Founded</h1>')
+          break
+      }
+  }
+}
+
+const server = http.createServer(processRequest)
+
+server.listen(port, () => {
+  console.log(`Servidor escuchando en puerto: http://localhost:${port}`)
+})
