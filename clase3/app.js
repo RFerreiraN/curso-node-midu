@@ -13,8 +13,8 @@ app.get('/movies', (req, res) => {
 app.get('/movies/:id', (req, res) => {
   const { id } = req.params
   const movie = movies.find(movie => movie.id === id)
-  if (movie) return res.status(201).json(movie)
-  res.status(404).json({ message: 'Movie Not Found' })
+  res.json(movie)
+  return res.status(404).json({ message: '404 Movie Not Found' })
 })
 
 app.use((req, res) => {
@@ -22,5 +22,5 @@ app.use((req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port: http://localhost:${PORT}`)
+  console.log(`Server listening on port: http://localhost:${PORT}/movies`)
 })
