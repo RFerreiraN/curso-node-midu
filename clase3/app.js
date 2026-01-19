@@ -20,6 +20,16 @@ app.get('/movies/:id', (req, res) => {
   }
 })
 
+app.delete('/movies/:id', (req, res) => {
+  const { id } = req.params
+  const movieDelete = movies.filter(movie => movie.id === id)
+  if (movieDelete) {
+    return res.json({ message: 'Movie Delete' })
+  } else {
+    return res.status(500).json({ message: '500 Error Internal Server' })
+  }
+})
+
 app.use((req, res) => {
   res.status(404).json({ message: '404 Not Found' })
 })
