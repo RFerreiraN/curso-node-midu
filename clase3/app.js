@@ -7,6 +7,13 @@ app.disable('x-powered-by')
 const PORT = process.env.PORT ?? 1234
 
 app.get('/movies', (req, res) => {
+  const { genre } = req.query
+  if (genre) {
+    const movieGenre = movies.filter(
+      movie => movie.genre.some(genero => genero.toLowerCase() === genre.toLowerCase())
+    )
+    return res.json(movieGenre)
+  }
   res.json(movies)
 })
 
