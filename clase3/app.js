@@ -1,8 +1,11 @@
 const express = require('express')
 const movies = require('./movies.json')
+const crypto = require('node:crypto')
+const z = require('zod')
 
 const app = express()
 app.disable('x-powered-by')
+app.use(express.json())
 
 const PORT = process.env.PORT ?? 1234
 
@@ -25,6 +28,24 @@ app.get('/movies/:id', (req, res) => {
   } else {
     return res.status(404).json({ message: '404 Movie Not Found' })
   }
+})
+
+app.post('/movies', (req, res) => {
+  const { title, year, director, duration, poster, genre, rate } = req.body
+
+  const newMovie = {
+    id: crypto.randomUUID(),
+    title,
+    year,
+    director,
+    duration,
+    poster,
+    genre,
+    rate: rate ?? 0
+  }
+  movies.push(newMovie)
+
+  return res.status(201).json(newMovie)
 })
 
 app.delete('/movies/:id', (req, res) => {
