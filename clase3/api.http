@@ -5,22 +5,24 @@ GET http://localhost:1234/movies
 GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
 
 ### Recuperar todas las peliculas por un género
-GET http://localhost:1234/movies?genre=fantasy
+GET http://localhost:1234/movies?genre=crime
+
+### Año de lanzamiento
+GET http://localhost:1234/movies?year=1994
 
 ### Agregar una pelicula
-
 POST http://localhost:1234/movies
 Content-Type: application/json
 
-  {
-    "title": "the godfather",
-    "year": 2009,
-    "director": "James Cameron",
-    "duration": 162,
-    "poster": "https://i.etsystatic.com/35681979/r/il/dfe3ba/3957859451/il_fullxfull.3957859451_h27r.jpg",
-    "genre": ["Action"],
-    "rate": 7.8
-  }
+ {
+    "title": "Paquita la del Barrio 3",
+    "year": 2005,
+    "director": "La Putinga",
+    "duration": 142,
+    "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+    "genre": ["Drama"],
+    "rate": 9.8
+ }
 
 ### Borrar una pelicula por su ID
-DELETE http://localhost:1234/movies/ca85d233-9b30-4358-8138-f802858c36a0
+DELETE http://localhost:1234/movies/6a360a18-c645-4b47-9a7b-2a71babbf3e0
