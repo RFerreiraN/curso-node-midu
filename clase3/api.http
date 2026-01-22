@@ -21,7 +21,7 @@ Content-Type: application/json
     "duration": 142,
     "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
     "genre": ["Drama"],
-    "rate": 9.8
+    
  }
 
 ### Borrar una pelicula por su ID
