@@ -1,18 +1,20 @@
 const express = require('express')
 const app = express()
 const products = require('./products.json')
+const crypto = require('node:crypto')
 
 app.disable('x-powered-by')
+app.use(express.json())
 
-const PORT = process.env.PORT ?? 3000
+const PORT = process.env.PORT ?? 2345
 // Todos los productos
 app.get('/products', (req, res) => {
   const { category } = req.query
   if (category) {
     const productCategory = products.filter(producto => producto.category.toLowerCase() === category.toLowerCase())
-    res.json(productCategory)
+    return res.json(productCategory)
   }
-  res.json(products)
+  return res.json(products)
 })
 
 // Obtener un solo producto por su ID
@@ -20,6 +22,24 @@ app.get('/products/:id', (req, res) => {
   const { id } = req.params
   const producto = products.filter(producto => producto.id === Number(id))
   res.status(200).json(producto)
+})
+
+// Crear un nuevo producto
+
+app.post('/products/', (req, res) => {
+  const { title, price, description, category, image, rating } = req.body
+  const newProduct = {
+    id: crypto.randomUUID(),
+    title,
+    price,
+    description,
+    category,
+    image,
+    rating: rating ?? 5
+  }
+
+  products.push(newProduct)
+  res.json(newProduct)
 })
 
 // Eliminar un producto por su ID
