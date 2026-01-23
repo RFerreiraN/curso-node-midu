@@ -4,7 +4,8 @@
   "description": "Curso Node de Midudev",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:4": "nodemon ./server/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,12 @@
   },
   "homepage": "https://github.com/RFerreiraN/curso-node-midu#readme",
   "dependencies": {
+    "express": "5.2.1",
     "picocolors": "1.1.1",
     "zod": "4.3.5"
   },
   "devDependencies": {
+    "nodemon": "^3.1.11",
     "standard": "17.1.2"
   },
   "eslintConfig": {
