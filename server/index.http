@@ -24,4 +24,4 @@ Content-Type: application/json
   }
 
 ### Eliminar un producto por su ID
-DELETE http://localhost:2345/products/eb9e4214-c05a-4cf8-978b-61da3d157df4
+DELETE http://localhost:2345/products/18
