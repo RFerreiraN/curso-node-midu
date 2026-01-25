@@ -2,7 +2,7 @@
 GET http://localhost:2345/products
 
 ### Recuperar un producto por su id
-GET http://localhost:2345/products/3
+GET http://localhost:2345/products/4
 
 ### Filtrar por categoria
 GET http://localhost:2345/products?category=men's clothing
@@ -18,10 +18,9 @@ Content-Type: application/json
     "category": "men's clothing",
     "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png",
     "rating": {
-      "rate": 4.7,
-      "count": 500
+      "count": 200
     }
   }
 
 ### Eliminar un producto por su ID
-DELETE http://localhost:2345/products/18
+DELETE http://localhost:2345/products/f24abc31-2c98-40ce-a6fa-e59ceeb11840

@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
 const products = require('./products.json')
-const crypto = require('node:crypto')
-const z = require('zod')
 
 app.disable('x-powered-by')
 app.use(express.json())
@@ -21,47 +19,25 @@ app.get('/products', (req, res) => {
 // Obtener un solo producto por su ID
 app.get('/products/:id', (req, res) => {
   const { id } = req.params
-  const producto = products.filter(producto => producto.id === Number(id))
+  const producto = products.filter(producto => producto.id.toString() === id)
   res.status(200).json(producto)
 })
 
 // Crear un nuevo producto
 
 app.post('/products/', (req, res) => {
-  const { title, price, description, category, image, rating } = req.body
 
-  const schemaProduct = z.object({
-    title: z.string(),
-    price: z.number().positive(),
-    description: z.string(),
-    category: z.string(),
-    image: z.url(),
-    rating: z.number().min(0).max(10)
-  })
-
-  const newProduct = {
-    id: crypto.randomUUID(),
-    title,
-    price,
-    description,
-    category,
-    image,
-    rating: rating ?? 5
-  }
-
-  products.push(newProduct)
-  res.json(newProduct)
 })
 
 // Eliminar un producto por su ID
 app.delete('/products/:id', (req, res) => {
   const { id } = req.params
-  const index = products.findIndex(producto => producto.id === Number(id))
+  const index = products.findIndex(producto => producto.id.toString() === id)
   if (index === -1) {
     return res.status(404).json({ message: '404 Producto Not Found' })
   }
   products.splice(index, 1)
-  return res.status(204).json(index)
+  return res.status(204).send()
 })
 
 app.use((req, res) => {
