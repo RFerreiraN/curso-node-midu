@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const products = require('./products.json')
 const crypto = require('node:crypto')
+const z = require('zod')
 
 app.disable('x-powered-by')
 app.use(express.json())
@@ -28,6 +29,16 @@ app.get('/products/:id', (req, res) => {
 
 app.post('/products/', (req, res) => {
   const { title, price, description, category, image, rating } = req.body
+
+  const schemaProduct = z.object({
+    title: z.string(),
+    price: z.number().positive(),
+    description: z.string(),
+    category: z.string(),
+    image: z.url(),
+    rating: z.number().min(0).max(10)
+  })
+
   const newProduct = {
     id: crypto.randomUUID(),
     title,
