@@ -15,12 +15,21 @@ Content-Type: application/json
     "title": "Chaqueta",
     "price": 100,
     "description": "Chaqueta de cuero",
-    "category": "men's clothing",
+    "category": "women's clothing",
     "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png",
     "rating": {
       "count": 200
     }
-  }
+  } 
+
+### Modificar parcialmente un producto
+
+PATCH http://localhost:2345/products/2
+Content-Type: application/json
+
+  {
+    "category": "men's clothing"
+  } 
 
 ### Eliminar un producto por su ID
-DELETE http://localhost:2345/products/f24abc31-2c98-40ce-a6fa-e59ceeb11840
+DELETE http://localhost:2345/products/344b36f1-b760-48e4-9c2a-268f87aee506

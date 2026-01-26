@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const products = require('./products.json')
+const crypto = require('node:crypto')
+const { validateProducto, validateProductParcial } = require('../Schema/productsSchema')
 
 app.disable('x-powered-by')
 app.use(express.json())
@@ -26,7 +28,44 @@ app.get('/products/:id', (req, res) => {
 // Crear un nuevo producto
 
 app.post('/products/', (req, res) => {
+  const result = validateProducto(req.body)
 
+  if (result.error) {
+    return res.status(400).json({ message: JSON.parse(result.error.message) })
+  }
+  const newProduct = {
+    id: crypto.randomUUID(),
+    ...result.data
+  }
+
+  products.push(newProduct)
+  res.status(201).json(newProduct)
+})
+
+// Modifcar parte de un producto por su ID
+
+app.patch('/products/:id', (req, res) => {
+  const result = validateProductParcial(req.body)
+
+  if (result.error) {
+    return res.status(400).json({ message: JSON.parse(result.error.message) })
+  }
+
+  const { id } = req.params
+  const index = products.findIndex(producto => producto.id.toString() === id)
+
+  if (index === -1) {
+    return res.status(404).json({ message: 'Product Not Found' })
+  }
+
+  const updateProduct = {
+    ...products[index],
+    ...result.data
+  }
+
+  products[index] = updateProduct
+
+  return res.json(updateProduct)
 })
 
 // Eliminar un producto por su ID
@@ -36,7 +75,6 @@ app.delete('/products/:id', (req, res) => {
   if (index === -1) {
     return res.status(404).json({ message: '404 Producto Not Found' })
   }
-  products.splice(index, 1)
   return res.status(204).send()
 })
 
