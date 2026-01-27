@@ -1,11 +1,13 @@
 const express = require('express')
 const movies = require('./movies.json')
 const crypto = require('node:crypto')
-const { validateMovie } = require('../Schema/movieSchema')
+const { validateMovie, validateMoviePartial } = require('../Schema/movieSchema')
+const cors = require('cors')
 
 const app = express()
 app.disable('x-powered-by')
 app.use(express.json())
+app.use(cors())
 
 const PORT = process.env.PORT ?? 1234
 
@@ -51,6 +53,30 @@ app.post('/movies', (req, res) => {
 
   movies.push(newMovie)
   return res.status(201).json(newMovie)
+})
+
+app.patch('/movies/:id', (req, res) => {
+  const result = validateMoviePartial(req.body)
+
+  if (result.error) {
+    return res.status(400).status({ message: JSON.parse(result.error.message) })
+  }
+
+  const { id } = req.params
+  const indexMovie = movies.findIndex(movie => movie.id === id)
+
+  if (indexMovie < 0) {
+    return res.status(404).json({ message: '404 Movie Not Found' })
+  }
+
+  const updateMovie = {
+    ...movies[indexMovie],
+    ...result.data
+  }
+
+  movies[indexMovie] = updateMovie
+
+  return res.json(updateMovie)
 })
 
 app.delete('/movies/:id', (req, res) => {
